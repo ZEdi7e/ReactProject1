@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import HomePage from './pages/HomePage';
+import CategoriesPage from './pages/CategoriesPage';
+import CategoryProductsPage from './pages/CategoryProductsPage';
+import NotFoundPage from './pages/NotFoundPage';
+import ProductPage from './pages/ProductPage';
+import AllProductsPage from './pages/AllProductsPage';
+import DiscountedProductsPage from './pages/DiscountedProductsPage';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => (
+  <BrowserRouter>
+    <Header/>
+    <Routes>
+      <Route path="/" element={<HomePage/>}/>
+      <Route path="/categories" element={<CategoriesPage/>}/>
+      <Route path="/categories/:categoryId" element={<CategoryProductsPage/>}/>
+      <Route path="/products/:productId" element={<ProductPage/>} />
+      <Route path="/products" element={<AllProductsPage/>} />
+      <Route path="/sales" element={<DiscountedProductsPage/>} />
+      <Route path="*" element={<NotFoundPage/>}/>
+    </Routes>
+    <Footer/>
+  </BrowserRouter>
+);
 
 export default App;
